@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "517386598677",
+    "project_id": "noir-atelier",
+    "storage_bucket": "noir-atelier.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517386598677:android:756933d616487e9892511c",
+        "android_client_info": {
+          "package_name": "com.example.noiratelier"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh8U_G1qwaiiYj3wnGVHPywR7OenyKylM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
