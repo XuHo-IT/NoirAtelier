@@ -3,4 +3,11 @@
     <string name="splash_title">YOUR\nFASHION WILL\nTELL ABOUT\nYOU</string>
     <string name="let_s_get_started">Let\'s get Started</string>
     <string name="already_have_an_account_signin">Already have an account? <font color="#19c563">SignIn</font></string>
+    <string name="favorite">Favorite</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="colors_amp_size"><![CDATA[Colors & Size]]></string>
+    <string name="product_detail">Product Detail</string>
 </resources>

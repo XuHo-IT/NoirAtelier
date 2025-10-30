@@ -39,6 +39,16 @@ private MainViewModel viewModel;
         initCategory();
         initBanner();
         initPopular();
+        initBottomNavigation();
+    }
+
+    private void initBottomNavigation() {
+          binding.bottomNavigation.setItemSelected(R.id.home,true);
+          binding.bottomNavigation.setOnItemSelectedListener(i->{
+              if(i==R.id.home){
+
+              }
+          });
     }
 
     private void initPopular() {
