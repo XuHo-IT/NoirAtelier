@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 
 import com.example.noiratelier.Adapter.BannerAdapter;
 import com.example.noiratelier.Adapter.CategoryAdapter;
+import com.example.noiratelier.Adapter.PopularAdapter;
 import com.example.noiratelier.Domain.BannerModel;
 import com.example.noiratelier.Domain.CategoryModel;
 import com.example.noiratelier.R;
@@ -37,6 +38,23 @@ private MainViewModel viewModel;
         viewModel = new MainViewModel();
         initCategory();
         initBanner();
+        initPopular();
+    }
+
+    private void initPopular() {
+        binding.progressBarPopular.setVisibility(View.VISIBLE);
+        viewModel.loadPopular().observeForever(itemsModels -> {
+            if(!itemsModels.isEmpty()){
+                binding.popularView.setLayoutManager(
+                        new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
+                binding.popularView.setAdapter(new PopularAdapter(itemsModels));
+                binding.popularView.setNestedScrollingEnabled(true);
+
+            }
+            binding.progressBarPopular.setVisibility(View.GONE);
+
+        });
+        viewModel.loadPopular();
     }
 
     private void initCategory() {
