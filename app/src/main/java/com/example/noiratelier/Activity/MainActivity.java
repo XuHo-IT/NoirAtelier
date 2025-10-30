@@ -1,5 +1,7 @@
 package com.example.noiratelier.Activity;
 
+import static androidx.core.view.ViewCompat.setOverScrollMode;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,8 +11,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
 
+import com.example.noiratelier.Adapter.BannerAdapter;
 import com.example.noiratelier.Adapter.CategoryAdapter;
+import com.example.noiratelier.Domain.BannerModel;
 import com.example.noiratelier.Domain.CategoryModel;
 import com.example.noiratelier.R;
 import com.example.noiratelier.ViewModel.MainViewModel;
@@ -29,6 +36,7 @@ private MainViewModel viewModel;
         setContentView(binding.getRoot());
         viewModel = new MainViewModel();
         initCategory();
+        initBanner();
     }
 
     private void initCategory() {
@@ -38,6 +46,25 @@ private MainViewModel viewModel;
             binding.categoryView.setAdapter(new CategoryAdapter(categoryModels));
             binding.categoryView.setNestedScrollingEnabled(true);
             binding.progressBarCategory.setVisibility(View.GONE);
+        });
+    }
+    private void banners (ArrayList<BannerModel> bannerModels) {
+        binding.viewPagerBanner.setAdapter(new BannerAdapter(bannerModels, binding.viewPagerBanner));
+        binding.viewPagerBanner.setClipToPadding(false);
+        binding.viewPagerBanner.setClipChildren(false);
+        binding.viewPagerBanner.setOffscreenPageLimit(3);
+        binding.viewPagerBanner.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        binding.viewPagerBanner.setPageTransformer(compositePageTransformer);
+    }
+    private void initBanner() {
+        binding.progressBarBanner.setVisibility(View.VISIBLE);
+        viewModel.loadBanner().observeForever( bannerModels -> {
+            if (bannerModels != null && !bannerModels.isEmpty()) {
+                banners(bannerModels);
+                binding.progressBarBanner.setVisibility(View.GONE);
+            }
         });
     }
 }
