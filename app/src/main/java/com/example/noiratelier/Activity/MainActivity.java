@@ -2,6 +2,7 @@ package com.example.noiratelier.Activity;
 
 import static androidx.core.view.ViewCompat.setOverScrollMode;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -47,6 +48,8 @@ private MainViewModel viewModel;
           binding.bottomNavigation.setOnItemSelectedListener(i->{
               if(i==R.id.home){
 
+              }else if(i==R.id.cart){
+                  startActivity(new Intent(MainActivity.this,CartActivity.class));
               }
           });
     }
